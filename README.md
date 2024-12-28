@@ -1,6 +1,6 @@
 # argc
 
-argc - print the number of arguments passed. That's it.
+argc - print the number of arguments passed. That's it. ~~Seriously, why doesn't this already exist?~~
 
 ## Synopsis
 
