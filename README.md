@@ -8,7 +8,7 @@ argc - print the number of arguments passed. That's it. ~~Seriously, why doesn't
 
 ## Description
 
-Print the number of argument passed to the program in base 10, followed by a newline.
+Print the number of arguments passed to the program in base 10, followed by a newline.
 
 The traditional `--help` and `--version` arguments aren't supported, in order to ensure seamless argument counting.
 
