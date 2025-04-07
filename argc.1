@@ -1,0 +1,28 @@
+.\" Manpage for argc
+.TH ARGC 1 "April 2025" "argc 1.0" "User Commands"
+.SH NAME
+argc \- print the number of arguments passed
+.SH SYNOPSIS
+.B argc
+.IR ARGUMENT ...
+.SH DESCRIPTION
+Prints the number of command-line arguments passed to the program in base 10, followed by a newline.
+
+For example, running:
+.B argc foo bar baz
+will output:
+.B 3
+
+The program does not support
+.BR --help
+or
+.BR --version
+in order to avoid interfering with argument counting.
+
+.SH AUTHOR
+Written by Scover.
+.SH REPORTING BUGS
+Report issues at:
+.BR https://github.com/5cover/argc
+.SH LICENSE
+This is free and unencumbered software released into the public domain.
