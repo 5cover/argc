@@ -2,6 +2,16 @@
 
 argc - print the number of arguments passed. That's it. ~~Seriously, why doesn't this already exist?~~
 
+## Synopsis
+
+`argc ARGUMENT...`
+
+## Description
+
+Prints the number of command-line arguments passed to the program in base 10, followed by a newline.
+
+The traditional `--help` and `--version` arguments aren't supported, in order to ensure seamless argument counting.
+
 ## Installation
 
 To build and install `argc` manually:
@@ -41,23 +51,63 @@ To clean up build artifacts:
 make clean
 ```
 
-## Synopsis
+## Running Tests
 
-`argc ARGUMENT...`
+Before running the tests, make sure the `argc` binary exists by compiling it:
 
-## Description
+```sh
+make
+```
 
-Print the number of arguments passed to the program in base 10, followed by a newline.
+Then, run the tests with:
 
-The traditional `--help` and `--version` arguments aren't supported, in order to ensure seamless argument counting.
+```sh
+prove -v t/argc.t
+prove -v t/zero.t
+```
 
-## Author
+Or run them all at once:
 
-Written by Scover.
+```sh
+prove -v t/
+```
 
-## Reporting bugs
+### Test scripts
 
-Github Repository: <https://github.com/5cover/argc>
+#### `t/argc.t`
+
+This is the main test suite. It checks:
+
+- That `argc` is executable
+- That it returns the correct number of arguments for:
+  - No extra args
+  - A few args
+  - A lot of args (up to 100)
+
+This test uses normal shell-style execution and reflects how `argc` behaves in the real world.
+
+#### `t/zero.t`
+
+This one’s&hellip; special.
+
+It uses **low-level syscall magic** to launch `argc` with **literally zero arguments**—not even `argv[0]`. This is only possible by bypassing the shell and calling the `execve()` system call directly.
+
+It's separated from the main suite because:
+
+- It’s a rare, weird edge case
+- Behavior is not guaranteed or portable
+- It tells us something about how `argc` (and your OS) handles broken expectations
+
+### Cleaning Up
+
+After running tests, you can clean up the compiled binary like so:
+
+```sh
+make clean
+```
+
+These tests aren’t here because they’re strictly necessary.  
+They’re here because **you deserve to know your 3-line program works with 100 arguments and 0 expectations.**
 
 ## Copyright
 
