@@ -6,7 +6,7 @@ argc - print the number of arguments passed. That's it. ~~Seriously, why doesn't
 
 To build and install `argc` manually:
 
-### 🛠 Prerequisites
+### Prerequisites
 
 You'll need:
 
@@ -14,7 +14,7 @@ You'll need:
 - `make`
 - Basic POSIX tools (`install`, `rm`, etc.)
 
-### 📦 Build and install
+### Build and install
 
 Clone the repository, then run:
 
