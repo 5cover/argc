@@ -90,7 +90,7 @@ This test uses normal shell-style execution and reflects how `argc` behaves in t
 
 This one’s&hellip; special.
 
-It uses **low-level syscall magic** to launch `argc` with **literally zero arguments**—not even `argv[0]`. This is only possible by bypassing the shell and calling the `execve()` system call directly.
+It uses **low-level syscall magic** to launch `argc` with **literally zero arguments**&mdash;not even `argv[0]`. This is only possible by bypassing the shell and calling the `execve()` system call directly.
 
 It's separated from the main suite because:
 
@@ -112,6 +112,12 @@ They’re here because **you deserve to know your 3-line program works with 100 
 ## Copyright
 
 This is free and unencumbered software released into the public domain.
+
+## Philosophy
+
+- Even the smallest tool deserves to be well-made.  
+- Even the most basic function can be shared with pride.  
+- Even three lines of C can teach someone *how real software is built*.
 
 ## Contributing
 
