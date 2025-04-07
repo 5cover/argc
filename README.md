@@ -12,6 +12,24 @@ Prints the number of command-line arguments passed to the program in base 10, fo
 
 The traditional `--help` and `--version` arguments aren't supported, in order to ensure seamless argument counting.
 
+## To ignore the program name
+
+By definition, `argc` includes the program name as the first argument (`argv[0]`).
+
+If you prefer to count only the user-supplied arguments (excluding the program itself), you can easily adjust:
+
+Using Bash arithmetic:
+
+```sh
+echo $(($(argc "$@") - 1))
+```
+
+Or with `bc`:
+
+```sh
+bc <<< "$(argc "$@")-1"
+```
+
 ## Installation
 
 To build and install `argc` manually:
