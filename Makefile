@@ -5,22 +5,34 @@ MANDIR := $(PREFIX)/share/man/man1
 CC := cc
 CFLAGS := -O2 -Wall
 
-all: argc
+BINARY := argc
+SOURCE := argc.c
+SOURCE_ASM := argc.asm
 
-argc: argc.c
+.PHONY: all hash clean install uninstall
+
+all: $(BINARY)
+
+hash: $(BINARY)
+	sha256sum $(BINARY) > $(BINARY).sha256
+
+$(BINARY): $(SOURCE)
 	$(CC) $(CFLAGS) -o $@ $<
 
-install: argc argc.1
-	install -Dm755 argc $(BINDIR)/argc
-	install -Dm644 argc.1 $(MANDIR)/argc.1
-	@echo "argc: installed to $(BINDIR), manpage to $(MANDIR)"
-
-uninstall:
-	rm -f $(BINDIR)/argc
-	rm -f $(MANDIR)/argc.1
-	@echo "argc: ninstalled"
+argcasm: $(SOURCE_ASM)
+	nasm -f elf64 $< -o argc.o
+	gcc -no-pie argc.o -o $@
 
 clean:
-	rm -f argc
+	rm -f argc argc.o
 
-.PHONY: all install uninstall clean
+install: $(BINARY) $(BINARY).1
+	install -Dm755 argc $(BINDIR)/$(BINARY)
+	install -Dm644 argc.1 $(MANDIR)/$(BINARY).1
+	@echo "$(BINARY): installed to $(BINDIR), manpage to $(MANDIR)"
+
+uninstall:
+	rm -f $(BINDIR)/$(BINARY)
+	rm -f $(MANDIR)/$(BINARY).1
+	@echo "$(BINARY): uninstalled"
+
